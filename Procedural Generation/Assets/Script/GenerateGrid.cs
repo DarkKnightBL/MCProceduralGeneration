@@ -42,13 +42,14 @@ public class GenerateGrid : MonoBehaviour
     // Generate the initial grid of grass blocks
     void GenerateInitialGrid()
     {
+        
         for (int x = -worldSizeX; x < worldSizeX; x++)
         {
             for (int z = -worldSizeZ; z < worldSizeZ; z++)
             {
                 // Use Perlin noise to determine the height of the block
                 int worldSizeY = Mathf.FloorToInt(GenerateNoise(x, z, detailScale) * noiseHeight);
-                Vector3 pos = new Vector3(x * gridOffset + startPos.x, worldSizeY, z * gridOffset + startPos.z);
+                Vector3 pos = new Vector3(x * 1 + startPos.x, worldSizeY, z * 1 + startPos.z);
 
                 // Instantiate grass block at the calculated position
                 GameObject grassBlock = Instantiate(grass, pos, Quaternion.identity) as GameObject;
@@ -59,6 +60,7 @@ public class GenerateGrid : MonoBehaviour
 
                 // Set the parent of the block to this object
                 grassBlock.transform.SetParent(this.transform);
+
             }
         }
     }
@@ -74,7 +76,7 @@ public class GenerateGrid : MonoBehaviour
                 {
                     // Use Perlin noise to determine the height of the block
                     int worldSizeY = Mathf.FloorToInt(GenerateNoise(x + xPlayerPosition, z + zPlayerPosition, detailScale) * noiseHeight);
-                    Vector3 pos = new Vector3(x * gridOffset + xPlayerPosition, worldSizeY, z * gridOffset + zPlayerPosition);
+                    Vector3 pos = new Vector3(x * 1 + xPlayerPosition, worldSizeY, z * 1 + zPlayerPosition);
 
                     // Check if the block at this position is not already in the container
                     if (!blockContainer.ContainsKey(pos))
